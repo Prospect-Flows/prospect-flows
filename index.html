@@ -4,6 +4,14 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>ProspectFlows — No Lead Goes Cold</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K7BTXNPB6P"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-K7BTXNPB6P');
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
@@ -12,7 +20,6 @@
     --blue-dim:rgba(41,121,255,0.12);
     --blue-border:rgba(41,121,255,0.3);
     --bg:#080b12;
-    --surface:rgba(255,255,255,0.03);
     --border:rgba(255,255,255,0.08);
     --text:#e8eaf0;
     --muted:rgba(255,255,255,0.45);
@@ -20,48 +27,42 @@
   }
   html{scroll-behavior:smooth}
   body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
-
-  /* NAV */
   nav{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 3rem;border-bottom:0.5px solid var(--border);position:sticky;top:0;z-index:100;background:rgba(8,11,18,0.92);backdrop-filter:blur(12px)}
   .logo{font-family:'Syne',sans-serif;font-size:20px;font-weight:600;color:#fff;letter-spacing:-0.5px}.logo span{color:var(--blue)}
   .nav-cta{background:var(--blue);color:#fff;border:none;padding:9px 20px;border-radius:6px;font-size:14px;font-family:'Inter',sans-serif;cursor:pointer;font-weight:500}
   .nav-cta:hover{background:#1a6aff}
-
-  /* HERO */
   .hero{padding:7rem 3rem 5rem;text-align:center;max-width:860px;margin:0 auto;position:relative}
   .hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse at center,rgba(41,121,255,0.08) 0%,transparent 70%);pointer-events:none}
   .badge{display:inline-flex;align-items:center;gap:6px;background:var(--blue-dim);border:0.5px solid var(--blue-border);color:var(--blue);font-size:12px;padding:5px 14px;border-radius:20px;margin-bottom:2rem;letter-spacing:0.5px;font-weight:500}
   .badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2s infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
   h1{font-family:'Syne',sans-serif;font-size:62px;font-weight:600;line-height:1.1;letter-spacing:-2px;margin-bottom:1.5rem;color:#fff}
-  h1 em{color:var(--blue);font-style:normal;position:relative}
+  h1 em{color:var(--blue);font-style:normal}
   .sub{font-size:19px;color:var(--muted);line-height:1.7;margin-bottom:3rem;max-width:580px;margin-left:auto;margin-right:auto;font-weight:300}
   .sub strong{color:rgba(255,255,255,0.75);font-weight:400}
-
-  /* CTA FORM */
-  .cta-box{background:rgba(255,255,255,0.025);border:0.5px solid var(--blue-border);border-radius:16px;padding:2.25rem;max-width:540px;margin:0 auto;position:relative}
-  .cta-box::before{content:'';position:absolute;inset:-1px;border-radius:16px;background:linear-gradient(135deg,rgba(41,121,255,0.2),transparent 60%);z-index:-1;pointer-events:none}
+  .cta-box{background:rgba(255,255,255,0.025);border:0.5px solid var(--blue-border);border-radius:16px;padding:2.25rem;max-width:540px;margin:0 auto}
   .cta-label{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.5}
   .field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
   .field-row.single{grid-template-columns:1fr}
-  input{background:rgba(255,255,255,0.05);border:0.5px solid var(--faint);border-radius:8px;padding:12px 14px;font-size:14px;color:#fff;font-family:'Inter',sans-serif;width:100%;outline:none;transition:border-color 0.2s}
-  input::placeholder{color:rgba(255,255,255,0.25)}
-  input:focus{border-color:rgba(41,121,255,0.6);background:rgba(41,121,255,0.05)}
+  input[type="text"],input[type="email"]{background:rgba(255,255,255,0.05);border:0.5px solid var(--faint);border-radius:8px;padding:12px 14px;font-size:14px;color:#fff;font-family:'Inter',sans-serif;width:100%;outline:none;transition:border-color 0.2s}
+  input[type="text"]::placeholder,input[type="email"]::placeholder{color:rgba(255,255,255,0.25)}
+  input[type="text"]:focus,input[type="email"]:focus{border-color:rgba(41,121,255,0.6);background:rgba(41,121,255,0.05)}
+  .consent-row{display:flex;align-items:flex-start;gap:10px;margin:12px 0;text-align:left}
+  .consent-row input[type="checkbox"]{width:16px;height:16px;margin-top:3px;flex-shrink:0;accent-color:var(--blue);cursor:pointer}
+  .consent-row label{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.5;cursor:pointer}
+  .consent-row label a{color:var(--blue);text-decoration:none}
+  .consent-row label a:hover{text-decoration:underline}
   .submit-btn{width:100%;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:13px;font-size:15px;font-weight:500;font-family:'Inter',sans-serif;cursor:pointer;margin-top:4px;transition:background 0.2s,transform 0.1s}
   .submit-btn:hover{background:#1a6aff}
   .submit-btn:active{transform:scale(0.99)}
+  .submit-btn:disabled{background:rgba(41,121,255,0.3);cursor:not-allowed}
   .form-note{font-size:12px;color:rgba(255,255,255,0.25);margin-top:10px}
-
-  /* PILLARS */
   .pillars{display:grid;grid-template-columns:1fr 1fr;border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border);margin:5rem 0}
   .pillar{padding:3rem;border-right:0.5px solid var(--border);position:relative;overflow:hidden}
   .pillar:last-child{border-right:none}
-  .pillar::after{content:'';position:absolute;bottom:-40px;right:-40px;width:120px;height:120px;border-radius:50%;background:rgba(41,121,255,0.04)}
   .p-icon{width:44px;height:44px;background:var(--blue-dim);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem}
   .pillar h3{font-family:'Syne',sans-serif;font-size:18px;font-weight:600;color:#fff;margin-bottom:0.6rem}
   .pillar p{font-size:14px;color:var(--muted);line-height:1.7}
-
-  /* HOW IT WORKS */
   .how{padding:4rem 3rem;max-width:900px;margin:0 auto}
   .section-label{font-size:12px;color:var(--blue);letter-spacing:1.5px;text-transform:uppercase;font-weight:500;margin-bottom:0.75rem}
   .how h2{font-family:'Syne',sans-serif;font-size:36px;font-weight:600;color:#fff;margin-bottom:0.5rem;letter-spacing:-0.5px}
@@ -71,16 +72,13 @@
   .step-num{font-size:11px;color:var(--blue);font-weight:600;letter-spacing:1px;margin-bottom:1rem}
   .step h4{font-family:'Syne',sans-serif;font-size:15px;font-weight:600;color:#fff;margin-bottom:0.5rem}
   .step p{font-size:13px;color:var(--muted);line-height:1.6}
-
-  /* PROOF BAR */
   .proof{padding:3rem;text-align:center;border-top:0.5px solid var(--border)}
   .proof p{font-size:16px;color:var(--muted);max-width:520px;margin:0 auto;line-height:1.7}
   .proof strong{color:rgba(255,255,255,0.8);font-weight:400}
-
-  /* FOOTER */
   footer{border-top:0.5px solid var(--border);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,0.2)}
-
-  /* FADE IN */
+  footer a{color:rgba(255,255,255,0.3);text-decoration:none}
+  footer a:hover{color:var(--blue)}
+  .footer-links{display:flex;gap:1.5rem}
   .fade{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
   .fade.visible{opacity:1;transform:none}
 </style>
@@ -106,7 +104,11 @@
     <div class="field-row single">
       <input type="email" placeholder="Work email" id="inp-email"/>
     </div>
-    <button class="submit-btn" onclick="handleSubmit()">Send me the details</button>
+    <div class="consent-row">
+      <input type="checkbox" id="inp-consent"/>
+      <label for="inp-consent">I agree to be contacted by ProspectFlows about my enquiry. I have read and accept the <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms.html">Terms & Conditions</a>.</label>
+    </div>
+    <button class="submit-btn" id="submit-btn" onclick="handleSubmit()">Send me the details</button>
     <p class="form-note" id="reply-msg">You'll receive a response within minutes — not days.</p>
   </div>
 </div>
@@ -146,21 +148,43 @@
 
 <footer>
   <span>© 2026 ProspectFlows</span>
-  <span>AI Automation Agency</span>
+  <div class="footer-links">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms & Conditions</a>
+  </div>
 </footer>
 
 <script>
-function handleSubmit(){
+var ZAPIER_WEBHOOK = 'https://hook.eu1.make.com/gdmdfsf7u1wnh49v1gu1d1t517qgvzbu';
+
+async function handleSubmit(){
   var n=document.getElementById('inp-name').value.trim();
+  var b=document.getElementById('inp-biz').value.trim();
   var e=document.getElementById('inp-email').value.trim();
+  var c=document.getElementById('inp-consent').checked;
   var msg=document.getElementById('reply-msg');
-  var btn=document.querySelector('.submit-btn');
+  var btn=document.getElementById('submit-btn');
+
   if(!n||!e){msg.textContent='Please add your name and email to continue.';msg.style.color='#ff6b6b';return;}
+  if(!c){msg.textContent='Please tick the consent box to continue.';msg.style.color='#ff6b6b';return;}
+
+  btn.textContent='Sending...';
+  btn.disabled=true;
+
+  try{
+    await fetch(ZAPIER_WEBHOOK,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name:n,business:b,email:e,consent:true,timestamp:new Date().toISOString()})
+    });
+  }catch(err){console.log('Webhook error:',err)}
+
   btn.textContent='Sent!';
   btn.style.background='#0f6e56';
   msg.textContent='Thanks '+n+' — expect a reply shortly.';
   msg.style.color='rgba(255,255,255,0.5)';
 }
+
 var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible')}})},{threshold:0.15});
 document.querySelectorAll('.fade').forEach(function(el){obs.observe(el)});
 </script>

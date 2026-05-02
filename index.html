@@ -174,7 +174,7 @@ async function handleSubmit(){
   try{
     await fetch(ZAPIER_WEBHOOK,{
       method:'POST',
-      headers:{'Content-Type':'text/plain'},
+      headers:{'Content-Type':'application/json'},
       body:JSON.stringify({name:n,business:b,email:e,consent:true,timestamp:new Date().toISOString()})
     });
   }catch(err){console.log('Webhook error:',err)}

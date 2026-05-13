@@ -100,15 +100,17 @@
 
   <div class="cta-box" id="cta">
     <p class="cta-label">Tell us a little about your business and we'll show you exactly what we can do.</p>
+    <!-- Honeypot field — hidden from real users, bots will fill it -->
+    <input type="text" id="inp-honeypot" name="website" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true"/>
     <div class="field-row">
-      <input type="text" placeholder="Your name" id="inp-name"/>
+      <input type="text" placeholder="Your name" id="inp-name" required/>
       <input type="text" placeholder="Business name" id="inp-biz"/>
     </div>
     <div class="field-row single">
-      <input type="email" placeholder="Work email" id="inp-email"/>
+      <input type="email" placeholder="Work email" id="inp-email" required/>
     </div>
     <div class="consent-row">
-      <input type="checkbox" id="inp-consent"/>
+      <input type="checkbox" id="inp-consent" required/>
       <label for="inp-consent">I agree to be contacted by ProspectFlows about my enquiry. I have read and accept the <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms.html">Terms & Conditions</a>.</label>
     </div>
     <button class="submit-btn" id="submit-btn" onclick="handleSubmit()">Get your free quote</button>
@@ -181,9 +183,11 @@ async function handleSubmit(){
   var b=document.getElementById('inp-biz').value.trim();
   var e=document.getElementById('inp-email').value.trim();
   var c=document.getElementById('inp-consent').checked;
+  var h=document.getElementById('inp-honeypot').value;
   var msg=document.getElementById('reply-msg');
   var btn=document.getElementById('submit-btn');
 
+  if(h){btn.textContent='Sent!';btn.style.background='#0f6e56';msg.textContent='You will receive a response within minutes.';msg.style.color='rgba(255,255,255,0.5)';return;}
   if(!n||!e){msg.textContent='Please add your name and email to continue.';msg.style.color='#ff6b6b';return;}
   if(!c){msg.textContent='Please tick the consent box to continue.';msg.style.color='#ff6b6b';return;}
 

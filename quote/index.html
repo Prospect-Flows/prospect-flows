@@ -33,14 +33,14 @@
   .logo{font-family:'Syne',sans-serif;font-size:20px;font-weight:600;color:#fff;letter-spacing:-0.5px;text-decoration:none}.logo span{color:var(--blue)}
   .nav-cta{background:var(--blue);color:#fff;border:none;padding:9px 20px;border-radius:6px;font-size:14px;font-family:'Inter',sans-serif;cursor:pointer;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
   .nav-cta:hover{background:#1a6aff}
-  .hero{padding:7rem 3rem 4.25rem;text-align:center;max-width:900px;margin:0 auto;position:relative}
+  .hero{padding:5.25rem 3rem 3.75rem;text-align:center;max-width:900px;margin:0 auto;position:relative}
   .hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse at center,rgba(41,121,255,0.08) 0%,transparent 70%);pointer-events:none}
-  .badge{display:inline-flex;align-items:center;gap:6px;background:var(--blue-dim);border:0.5px solid var(--blue-border);color:var(--blue);font-size:12px;padding:5px 14px;border-radius:20px;margin-bottom:2rem;letter-spacing:0.5px;font-weight:500}
+  .badge{display:inline-flex;align-items:center;gap:6px;background:var(--blue-dim);border:0.5px solid var(--blue-border);color:var(--blue);font-size:12px;padding:5px 14px;border-radius:20px;margin-bottom:1.5rem;letter-spacing:0.5px;font-weight:500}
   .badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2s infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
   h1{font-family:'Syne',sans-serif;font-size:62px;font-weight:600;line-height:1.1;letter-spacing:-2px;margin-bottom:1.5rem;color:#fff}
   h1 em{color:var(--blue);font-style:normal}
-  .sub{font-size:19px;color:var(--muted);line-height:1.7;margin-bottom:3rem;max-width:650px;margin-left:auto;margin-right:auto;font-weight:300}
+  .sub{font-size:19px;color:var(--muted);line-height:1.7;margin-bottom:2.25rem;max-width:650px;margin-left:auto;margin-right:auto;font-weight:300}
   .sub strong{color:rgba(255,255,255,0.75);font-weight:400}
   .quote-box{background:rgba(255,255,255,0.025);border:0.5px solid var(--blue-border);border-radius:16px;padding:2.25rem;max-width:600px;margin:0 auto;text-align:left}
   .quote-label{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.5;text-align:center}
@@ -102,7 +102,7 @@
     nav{padding:1rem 1.25rem;gap:1rem}
     .logo{font-size:18px;white-space:nowrap}
     .nav-cta{padding:8px 12px;font-size:12px}
-    .hero{padding:5rem 1.25rem 3.5rem}
+    .hero{padding:3.75rem 1.25rem 3rem}
     .hero::before{width:320px;height:300px}
     h1{font-size:42px;letter-spacing:-1.2px}
     .sub{font-size:16px;margin-bottom:2rem}
@@ -124,7 +124,7 @@
 
 <nav>
   <a class="logo" href="../">Prospect<span>Flows</span></a>
-  <a class="nav-cta" href="#quote">Get your quote</a>
+  <a class="nav-cta" href="../">Back to main site</a>
 </nav>
 
 <div class="hero">
@@ -164,7 +164,7 @@
       <div class="result-card">
         <div class="result-kicker">Scope call required</div>
         <h2>We need to confirm your workflow before issuing a final fixed quote.</h2>
-        <p>Higher enquiry volume may require a slightly different setup. We’ll confirm the systems involved, the workflow steps, and the final setup before issuing your final quote.</p>
+        <p>Your enquiry volume is above the standard indicative range. We’ll confirm the systems involved, the workflow steps, and the final setup before issuing your final fixed quote.</p>
         <p><strong>This is not a further demo.</strong> You’ve already seen our standard solution in practice. This is a recorded call to map your current workflow and confirm final setup so that we can issue a final quote for you.</p>
         <a class="submit-btn" href="[BOOKING_LINK_PLACEHOLDER]">Book your recorded scope call</a>
         <p class="disclaimer">This quote is based on our standard Speed to Lead offer and the number of enquiries you have entered. If your setup requires extra steps, integrations, or a higher monthly operation volume, this may change. A short scope call may be required before we confirm your final fixed price.</p>
@@ -193,7 +193,7 @@
 
 <div class="how">
   <div class="section-label fade">Scope call</div>
-  <h2 class="fade">Every quote is confirmed on a recorded scope call.</h2>
+  <h2 class="fade">Final price is confirmed on a recorded scope call.</h2>
   <p class="sub2 fade">This is not a further demo, you’ve already seen our standard solution in practice. This is a recorded call to map your current workflow and confirm final setup so that we can issue a final quote for you.</p>
   <div class="steps fade">
     <div class="step">
@@ -269,7 +269,7 @@ function generateQuote(){
   // - Monthly operations = enquiries x 5.
   // - The internal operation calculation is deliberately not displayed prominently to visitors.
   // - 1-200 enquiries: show the indicative standard £500/month quote.
-  // - Over 200 enquiries: request a short scope call before issuing a final fixed quote.
+  // - Over 200 enquiries: request a recorded scope call before issuing a final fixed quote.
   var monthlyOperations=enquiries*5;
 
   if(enquiries<=200){

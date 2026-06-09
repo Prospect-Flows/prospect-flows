@@ -53,7 +53,7 @@
   .submit-btn:active{transform:scale(0.99)}
   .form-note{font-size:12px;color:rgba(255,255,255,0.25);margin-top:10px;text-align:center}
   .validation-msg{font-size:13px;color:var(--error);min-height:20px;margin:2px 0 8px;text-align:center}
-  .result{display:none;margin-top:1.5rem;border-top:0.5px solid var(--border);padding-top:1.5rem}
+  .result{display:none;margin-top:1.5rem;border-top:0.5px solid var(--border);padding-top:1.5rem;scroll-margin-top:110px}
   .result.visible{display:block}
   .result-card{background:rgba(41,121,255,0.06);border:0.5px solid var(--blue-border);border-radius:14px;padding:1.5rem}
   .result-kicker{font-size:12px;color:var(--blue);letter-spacing:1px;text-transform:uppercase;font-weight:500;margin-bottom:0.5rem}
@@ -156,7 +156,7 @@
         </ul>
         <p class="disclaimer">This quote is based on our standard Speed to Lead offer and the number of enquiries you have entered. If your setup requires extra steps, integrations, or a higher monthly operation volume, this may change. A short scope call may be required before we confirm your final fixed price.</p>
         <p class="secondary-copy">Not ready yet? No problem — you can return to this page anytime, or reply to our email with any questions.</p>
-        <a class="submit-btn scope-link" href="[BOOKING_LINK_PLACEHOLDER]">Ready to confirm your setup? Book your recorded scope call.</a>
+        <a class="submit-btn scope-link" href="[BOOKING_LINK_PLACEHOLDER]">Ready to confirm your setup? Book your 10–15 minute scope call.</a>
       </div>
     </div>
 
@@ -166,7 +166,7 @@
         <h2>We need to confirm your workflow before issuing a final fixed quote.</h2>
         <p>Your enquiry volume is above the standard indicative range. We’ll confirm the systems involved, the workflow steps, and the final setup before issuing your final fixed quote.</p>
         <p><strong>This is not a further demo.</strong> You’ve already seen our standard solution in practice. This is a recorded call to map your current workflow and confirm final setup so that we can issue a final quote for you.</p>
-        <a class="submit-btn" href="[BOOKING_LINK_PLACEHOLDER]">Book your recorded scope call</a>
+        <a class="submit-btn" href="[BOOKING_LINK_PLACEHOLDER]">Book your 10–15 minute scope call</a>
         <p class="disclaimer">This quote is based on our standard Speed to Lead offer and the number of enquiries you have entered. If your setup requires extra steps, integrations, or a higher monthly operation volume, this may change. A short scope call may be required before we confirm your final fixed price.</p>
         <p class="secondary-copy">Not ready yet? No problem — you can return to this page anytime, or reply to our email with any questions.</p>
       </div>
@@ -193,7 +193,7 @@
 
 <div class="how">
   <div class="section-label fade">Scope call</div>
-  <h2 class="fade">Final price is confirmed on a recorded scope call.</h2>
+  <h2 class="fade">Final price is confirmed on a 10–15 minute scope call.</h2>
   <p class="sub2 fade">This is not a further demo, you’ve already seen our standard solution in practice. This is a recorded call to map your current workflow and confirm final setup so that we can issue a final quote for you.</p>
   <div class="steps fade">
     <div class="step">
@@ -233,7 +233,7 @@
   <p><strong>Not ready yet? No problem.</strong></p>
   <p>You can return to this page anytime, or reply to our email with any questions.</p>
   <div class="offer-cta">
-    <a class="offer-btn" href="[BOOKING_LINK_PLACEHOLDER]">Have a more complex setup? Book your recorded scope call.</a>
+    <a class="offer-btn" href="[BOOKING_LINK_PLACEHOLDER]">Have a more complex setup? Book your 10–15 minute scope call.</a>
   </div>
 </div>
 
@@ -257,9 +257,11 @@ function generateQuote(){
   standardResult.classList.remove('visible');
   scopeResult.classList.remove('visible');
   validation.textContent='';
+  input.removeAttribute('aria-invalid');
 
   if(rawValue===''||!Number.isFinite(enquiries)||!Number.isInteger(enquiries)||enquiries<=0){
     validation.textContent='Please enter a whole number above zero to generate your indicative quote.';
+    input.setAttribute('aria-invalid','true');
     input.focus();
     return;
   }
@@ -269,19 +271,35 @@ function generateQuote(){
   // - Monthly operations = enquiries x 5.
   // - The internal operation calculation is deliberately not displayed prominently to visitors.
   // - 1-200 enquiries: show the indicative standard £500/month quote.
-  // - Over 200 enquiries: request a recorded scope call before issuing a final fixed quote.
+  // - Over 200 enquiries: request a 10-15 minute scope call before issuing a final fixed quote.
   var monthlyOperations=enquiries*5;
+
+  var activeResult;
 
   if(enquiries<=200){
     standardResult.classList.add('visible');
+    activeResult=standardResult;
   }else{
     scopeResult.classList.add('visible');
+    activeResult=scopeResult;
   }
+
+  // Bring the result into view immediately, especially on smaller screens.
+  activeResult.scrollIntoView({behavior:'smooth',block:'start'});
 
   if(window.gtag){
     gtag('event','quote_generated',{enquiries_per_month:enquiries,monthly_operations:monthlyOperations,quote_type:enquiries<=200?'standard':'scope_required'});
   }
 }
+
+var inputField=document.getElementById('enquiries');
+var validationMessage=document.getElementById('validation-msg');
+
+// Clear the validation warning as soon as the visitor starts correcting the input.
+inputField.addEventListener('input',function(){
+  validationMessage.textContent='';
+  inputField.removeAttribute('aria-invalid');
+});
 
 var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible')}})},{threshold:0.15});
 document.querySelectorAll('.fade').forEach(function(el){obs.observe(el)});

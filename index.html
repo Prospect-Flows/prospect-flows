@@ -52,6 +52,8 @@
   .consent-row label{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.5;cursor:pointer}
   .consent-row label a{color:var(--blue);text-decoration:none}
   .consent-row label a:hover{text-decoration:underline}
+  .h-captcha{display:flex;justify-content:center;margin:14px 0 10px}
+  .captcha-error{font-size:12px;color:#ffb4b4;margin:8px 0 0;display:none}
   .submit-btn{width:100%;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:13px;font-size:15px;font-weight:500;font-family:'Inter',sans-serif;cursor:pointer;margin-top:4px;transition:background 0.2s,transform 0.1s}
   .submit-btn:hover{background:#1a6aff}
   .submit-btn:active{transform:scale(0.99)}
@@ -109,21 +111,19 @@
     <input type="hidden" name="from_name" value="Prospect Flows Website">
     <input type="hidden" name="source" value="PF_FORM_SUBMISSION_V1">
     <input type="hidden" name="message" value="PF_FORM_SUBMISSION_V1 - Website form enquiry from the Prospect Flows landing page.">
-
-    <!-- Honeypot field — hidden from real users, bots may fill it. -->
-    <input type="text" id="inp-honeypot" name="website" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true">
-
     <div class="field-row">
-      <input type="text" placeholder="Your name" id="inp-name" name="name" maxlength="80" required>
-      <input type="text" placeholder="Business name" id="inp-biz" name="business" maxlength="120">
+      <input type="text" placeholder="Your name" id="inp-name" name="name" autocomplete="name" minlength="2" maxlength="80" required>
+      <input type="text" placeholder="Business name" id="inp-biz" name="business" autocomplete="organization" maxlength="120">
     </div>
     <div class="field-row single">
-      <input type="email" placeholder="Work email" id="inp-email" name="email" maxlength="120" required>
+      <input type="email" placeholder="Work email" id="inp-email" name="email" autocomplete="email" minlength="5" maxlength="120" required>
     </div>
     <div class="consent-row">
       <input type="checkbox" id="inp-consent" name="consent" value="Agreed to be contacted and accepted Privacy Policy and Terms" required>
       <label for="inp-consent">I agree to be contacted by ProspectFlows about my enquiry. I have read and accept the <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms.html">Terms & Conditions</a>.</label>
     </div>
+    <div class="h-captcha" data-captcha="true" data-theme="dark"></div>
+    <p class="captcha-error" id="captcha-error">Please complete the captcha before submitting.</p>
     <button class="submit-btn" id="submit-btn" type="submit">Get a free demo of our solution</button>
     <p class="form-note" id="reply-msg">You'll receive a response within minutes — not days. That's us showing you what our product can do for you.</p>
   </form>
@@ -186,15 +186,37 @@
   </div>
 </footer>
 
+<script src="https://web3forms.com/client/script.js" async defer></script>
+
 <script>
 var form=document.getElementById('cta');
 var submitBtn=document.getElementById('submit-btn');
 var replyMsg=document.getElementById('reply-msg');
+var captchaError=document.getElementById('captcha-error');
 
-// Keep client-side handling light. Web3Forms handles the form submission.
-// This only prevents double-click duplicate submissions after browser validation passes.
+// Web3Forms handles the form submission.
+// This validates hCaptcha and prevents double-click duplicate submissions after browser validation passes.
 if(form){
-  form.addEventListener('submit',function(){
+  form.addEventListener('submit',function(e){
+    var hCaptchaResponse=form.querySelector('textarea[name="h-captcha-response"]');
+
+    if(!hCaptchaResponse || !hCaptchaResponse.value.trim()){
+      e.preventDefault();
+
+      if(captchaError){
+        captchaError.style.display='block';
+      }
+      if(replyMsg){
+        replyMsg.textContent='Please complete the captcha before sending your enquiry.';
+        replyMsg.style.color='#ffb4b4';
+      }
+
+      return;
+    }
+
+    if(captchaError){
+      captchaError.style.display='none';
+    }
     if(submitBtn){
       submitBtn.textContent='Sending...';
       submitBtn.disabled=true;

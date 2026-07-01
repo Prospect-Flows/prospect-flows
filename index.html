@@ -98,24 +98,35 @@
   <h1>No lead goes<br><em>cold.</em> Ever.</h1>
   <p class="sub"><strong>Speed to lead is everything.</strong> Prospect Flows automatically responds to every inbound email enquiry within 60 seconds — so you never lose a warm lead to a slow reply again.</p>
 
-  <div class="cta-box" id="cta">
+  <form class="cta-box" id="cta" action="https://api.web3forms.com/submit" method="POST">
     <p class="cta-label">Tell us a little about your business and we'll show you exactly what we can do.</p>
-    <!-- Honeypot field — hidden from real users, bots will fill it -->
-    <input type="text" id="inp-honeypot" name="website" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true"/>
+
+    <!-- Web3Forms access key: this is expected to be visible in static HTML. -->
+    <input type="hidden" name="access_key" value="8eabd017-1b37-4310-bc9a-291eca421850">
+
+    <!-- Fixed routing fields for the dedicated form inbox / Make Gmail route. -->
+    <input type="hidden" name="subject" value="PF Website Form Submission">
+    <input type="hidden" name="from_name" value="Prospect Flows Website">
+    <input type="hidden" name="source" value="PF_FORM_SUBMISSION_V1">
+    <input type="hidden" name="message" value="PF_FORM_SUBMISSION_V1 - Website form enquiry from the Prospect Flows landing page.">
+
+    <!-- Honeypot field — hidden from real users, bots may fill it. -->
+    <input type="text" id="inp-honeypot" name="website" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true">
+
     <div class="field-row">
-      <input type="text" placeholder="Your name" id="inp-name" required/>
-      <input type="text" placeholder="Business name" id="inp-biz"/>
+      <input type="text" placeholder="Your name" id="inp-name" name="name" maxlength="80" required>
+      <input type="text" placeholder="Business name" id="inp-biz" name="business" maxlength="120">
     </div>
     <div class="field-row single">
-      <input type="email" placeholder="Work email" id="inp-email" required/>
+      <input type="email" placeholder="Work email" id="inp-email" name="email" maxlength="120" required>
     </div>
     <div class="consent-row">
-      <input type="checkbox" id="inp-consent" required/>
+      <input type="checkbox" id="inp-consent" name="consent" value="Agreed to be contacted and accepted Privacy Policy and Terms" required>
       <label for="inp-consent">I agree to be contacted by ProspectFlows about my enquiry. I have read and accept the <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms.html">Terms & Conditions</a>.</label>
     </div>
-    <button class="submit-btn" id="submit-btn" onclick="handleSubmit()">Get a free demo of our solution</button>
+    <button class="submit-btn" id="submit-btn" type="submit">Get a free demo of our solution</button>
     <p class="form-note" id="reply-msg">You'll receive a response within minutes — not days. That's us showing you what our product can do for you.</p>
-  </div>
+  </form>
 </div>
 
 <div class="pillars">
@@ -176,36 +187,23 @@
 </footer>
 
 <script>
-var MAKE_WEBHOOK = 'https://hook.eu1.make.com/gdmdfsf7u1wnh49v1gu1d1t517qgvzbu';
+var form=document.getElementById('cta');
+var submitBtn=document.getElementById('submit-btn');
+var replyMsg=document.getElementById('reply-msg');
 
-async function handleSubmit(){
-  var n=document.getElementById('inp-name').value.trim();
-  var b=document.getElementById('inp-biz').value.trim();
-  var e=document.getElementById('inp-email').value.trim();
-  var c=document.getElementById('inp-consent').checked;
-  var h=document.getElementById('inp-honeypot').value;
-  var msg=document.getElementById('reply-msg');
-  var btn=document.getElementById('submit-btn');
-
-  if(h){btn.textContent='Sent!';btn.style.background='#0f6e56';msg.textContent='You will receive a response within minutes.';msg.style.color='rgba(255,255,255,0.5)';return;}
-  if(!n||!e){msg.textContent='Please add your name and email to continue.';msg.style.color='#ff6b6b';return;}
-  if(!c){msg.textContent='Please tick the consent box to continue.';msg.style.color='#ff6b6b';return;}
-
-  btn.textContent='Sending...';
-  btn.disabled=true;
-
-  try{
-    await fetch(MAKE_WEBHOOK,{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({name:n,business:b,email:e,consent:true,timestamp:new Date().toISOString()})
-    });
-  }catch(err){console.log('Webhook error:',err)}
-
-  btn.textContent='Sent!';
-  btn.style.background='#0f6e56';
-  msg.textContent='You\'ll receive a response within minutes — not days. That\'s us showing you what our product can do for you.';
-  msg.style.color='rgba(255,255,255,0.5)';
+// Keep client-side handling light. Web3Forms handles the form submission.
+// This only prevents double-click duplicate submissions after browser validation passes.
+if(form){
+  form.addEventListener('submit',function(){
+    if(submitBtn){
+      submitBtn.textContent='Sending...';
+      submitBtn.disabled=true;
+    }
+    if(replyMsg){
+      replyMsg.textContent='Sending your enquiry securely...';
+      replyMsg.style.color='rgba(255,255,255,0.5)';
+    }
+  });
 }
 
 var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible')}})},{threshold:0.15});

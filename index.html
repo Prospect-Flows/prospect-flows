@@ -36,7 +36,7 @@
   .badge{display:inline-flex;align-items:center;gap:6px;background:var(--blue-dim);border:0.5px solid var(--blue-border);color:var(--blue);font-size:12px;padding:5px 14px;border-radius:20px;margin-bottom:2rem;letter-spacing:0.5px;font-weight:500}
   .badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2s infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
-  h1{font-family:'Syne',sans-serif;font-size:62px;font-weight:600;line-height:1.1;letter-spacing:-2px;margin-bottom:1.5rem;color:#fff}
+  h1{font-family:'Syne',sans-serif;font-size:62px;font-weight:600;line-height:1.18;letter-spacing:-2px;margin-bottom:1.5rem;color:#fff;padding-bottom:0.06em}
   h1 em{color:var(--blue);font-style:normal}
   .sub{font-size:19px;color:var(--muted);line-height:1.7;margin-bottom:3rem;max-width:580px;margin-left:auto;margin-right:auto;font-weight:300}
   .sub strong{color:rgba(255,255,255,0.75);font-weight:400}
@@ -80,28 +80,77 @@
   .offer-cta{margin-top:2rem}
   .offer-btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:14px 32px;font-size:16px;font-weight:500;font-family:'Inter',sans-serif;cursor:pointer;transition:background 0.2s}
   .offer-btn:hover{background:#1a6aff}
-  footer{border-top:0.5px solid var(--border);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,0.2)}
+  footer{border-top:0.5px solid var(--border);padding:2rem 3rem;display:grid;grid-template-columns:auto 1fr auto;gap:2rem;align-items:center;font-size:12px;color:rgba(255,255,255,0.2)}
   footer a{color:rgba(255,255,255,0.3);text-decoration:none}
   footer a:hover{color:var(--blue)}
+  .footer-disclaimer{max-width:720px;justify-self:center;text-align:center;color:rgba(255,255,255,0.28);line-height:1.5}
   .footer-links{display:flex;gap:1.5rem}
   .fade{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
   .fade.visible{opacity:1;transform:none}
+
+  .outcomes{padding:4rem 3rem;max-width:980px;margin:0 auto}
+  .outcomes h2{font-family:'Syne',sans-serif;font-size:36px;font-weight:600;line-height:1.28;color:#fff;margin-bottom:0.5rem;letter-spacing:-0.5px;padding-bottom:0.06em}
+  .outcomes .sub2{font-size:15px;color:var(--muted);margin-bottom:2.5rem}
+  .outcome-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:0.5px solid var(--border)}
+  .outcome{background:var(--bg);padding:1.2rem 1.35rem;display:flex;align-items:flex-start;gap:12px}
+  .outcome-check{width:22px;height:22px;border-radius:50%;background:var(--blue-dim);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0;margin-top:1px}
+  .outcome p{font-size:14px;color:rgba(255,255,255,0.72);line-height:1.55}
+  .demo-section{padding:5rem 3rem;max-width:760px;margin:0 auto;text-align:center;border-top:0.5px solid var(--border)}
+  .demo-section h2{font-family:'Syne',sans-serif;font-size:38px;font-weight:600;line-height:1.28;color:#fff;margin-bottom:0.75rem;letter-spacing:-0.5px;padding-bottom:0.06em}
+  .demo-section>.sub2{font-size:15px;color:var(--muted);margin-bottom:2rem}
+  @media(max-width:700px){
+    nav{padding:1rem 1.25rem}
+    .nav-cta{padding:8px 12px;font-size:12px}
+    .hero{padding:5rem 1.25rem 3.5rem}
+    h1{font-size:42px;letter-spacing:-1px}
+    .sub{font-size:17px}
+    .outcomes,.demo-section{padding:3.5rem 1.25rem}
+    .outcome-grid{grid-template-columns:1fr}
+    .field-row{grid-template-columns:1fr}
+    footer{padding:1.5rem 1.25rem;grid-template-columns:1fr;gap:1rem;align-items:start}
+    .footer-disclaimer{justify-self:start;text-align:left}
+  }
+
 </style>
 </head>
 <body>
 
 <nav>
   <div class="logo">Prospect<span>Flows</span></div>
-  <button class="nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Get a free demo of our solution</button>
+  <button class="nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">See Prospect Flows in action</button>
 </nav>
 
 <div class="hero">
-  <div class="badge">Email Lead Automation</div>
-  <h1>No lead goes<br><em>cold.</em> Ever.</h1>
-  <p class="sub"><strong>Speed to lead is everything.</strong> Prospect Flows automatically responds to every inbound email enquiry within 60 seconds — so you never lose a warm lead to a slow reply again.</p>
+  <div class="badge">End-to-End Lead Management</div>
+  <h1>Never let a hot lead<br><em>go cold.</em></h1>
+  <p class="sub">You are already paying for leads — or paying someone to generate them. The hidden cost is what happens next. Prospect Flows makes sure every genuine enquiry is acknowledged, routed, logged and monitored from the moment it arrives.</p>
+</div>
 
+<div class="outcomes">
+  <div class="section-label fade">What you get</div>
+  <h2 class="fade">Every lead handled.<br>Nothing left to chance.</h2>
+  <p class="sub2 fade">A fully managed lead-response process designed to stop genuine enquiries being missed, delayed or lost.</p>
+
+  <div class="outcome-grid fade">
+    <div class="outcome"><span class="outcome-check">✓</span><p>One lead source fully managed</p></div>
+    <div class="outcome"><span class="outcome-check">✓</span><p>Every genuine enquiry validated</p></div>
+    <div class="outcome"><span class="outcome-check">✓</span><p>Personalised acknowledgement sent in under 60 seconds*</p></div>
+    <div class="outcome"><span class="outcome-check">✓</span><p>Instant notification to your team</p></div>
+    <div class="outcome"><span class="outcome-check">✓</span><p>Automatic lead logging</p></div>
+    <div class="outcome"><span class="outcome-check">✓</span><p>Follow-up reminders for unactioned leads</p></div>
+    <div class="outcome"><span class="outcome-check">✓</span><p>Fully managed service</p></div>
+    <div class="outcome"><span class="outcome-check">✓</span><p>Continuous monitoring</p></div>
+    <div class="outcome"><span class="outcome-check">✓</span><p>Failure detection and recovery</p></div>
+    <div class="outcome"><span class="outcome-check">✓</span><p>Monthly operational reporting</p></div>
+  </div>
+</div>
+
+<div class="demo-section">
+  <div class="section-label fade">Free demonstration</div>
+  <h2 class="fade">See Prospect Flows in Action</h2>
+  <p class="sub2 fade">Complete the form below to see how our Standard Solution manages a genuine enquiry from start to finish. It's free and without obligation.</p>
   <form class="cta-box" id="cta" action="https://api.web3forms.com/submit" method="POST">
-    <p class="cta-label">Tell us a little about your business and we'll show you exactly what we can do.</p>
+    <p class="cta-label">Complete the form below to see how our Standard Solution manages a genuine enquiry from start to finish. It's free and without obligation.</p>
 
     <!-- Web3Forms access key: this is expected to be visible in static HTML. -->
     <input type="hidden" name="access_key" value="8eabd017-1b37-4310-bc9a-291eca421850">
@@ -125,62 +174,14 @@
     </div>
     <div class="h-captcha" data-captcha="true" data-theme="dark"></div>
     <p class="captcha-error" id="captcha-error">Please complete the captcha before submitting.</p>
-    <button class="submit-btn" id="submit-btn" type="submit">Get a free demo of our solution</button>
-    <p class="form-note" id="reply-msg">You'll receive a response within minutes — not days. That's us showing you what our product can do for you.</p>
+    <button class="submit-btn" id="submit-btn" type="submit">Request Your Free Demonstration</button>
+    <p class="form-note" id="reply-msg">Submit a genuine enquiry and experience the response journey for yourself.</p>
   </form>
-</div>
-
-<div class="pillars">
-  <div class="pillar fade">
-    <div class="p-icon">
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="#2979FF" stroke-width="1.5"/><path d="M11 7v4l2.5 2.5" stroke="#2979FF" stroke-width="1.5" stroke-linecap="round"/></svg>
-    </div>
-    <h3>Instant response</h3>
-    <p>Every inbound email enquiry gets a professional, automated reply within 60 seconds — 24 hours a day, 7 days a week, no exceptions.</p>
-  </div>
-  <div class="pillar fade">
-    <div class="p-icon">
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M6 11h10M6 7h10M6 15h6" stroke="#2979FF" stroke-width="1.5" stroke-linecap="round"/></svg>
-    </div>
-    <h3>Simple and transparent</h3>
-    <p>No jargon, no tie-ins, no hidden costs. We build it, we maintain it — you just benefit from it.</p>
-  </div>
-</div>
-
-<div class="how">
-  <div class="section-label fade">How it works</div>
-  <h2 class="fade">Three steps.<br>Every lead handled.</h2>
-  <p class="sub2 fade">Simple by design. Effective by default.</p>
-  <div class="steps fade">
-    <div class="step">
-      <div class="step-num">01</div>
-      <h4>Lead arrives</h4>
-      <p>A prospect emails your business or submits an enquiry via your website form.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <h4>Instant response</h4>
-      <p>They receive a professional, automated reply within 60 seconds. Every time. Day or night.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <h4>You stay in control</h4>
-      <p>No complicated tech. No lock-in contracts. We build it, we maintain it, you benefit from it.</p>
-    </div>
-  </div>
-</div>
-
-<div class="offer fade">
-  <p><strong>Think about the last warm lead that went cold because nobody got back to them fast enough.</strong></p>
-  <p>We fix that. Simply, affordably, and without disrupting how your business already works.</p>
-  <p>Submit an enquiry below to see our offer in action for yourself. The demonstration is free and non-obligatory.</p>
-  <div class="offer-cta">
-    <button class="offer-btn" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Get a free demo of our solution</button>
-  </div>
 </div>
 
 <footer>
   <span>© 2026 ProspectFlows</span>
+  <p class="footer-disclaimer">*Our current solution dispatches acknowledgements in an average of 33 seconds from receipt of an enquiry. The time the response is received may vary depending on the recipient's email provider.</p>
   <div class="footer-links">
     <a href="privacy-policy.html">Privacy Policy</a>
     <a href="terms.html">Terms & Conditions</a>

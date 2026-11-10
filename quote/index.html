@@ -1,289 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ProspectFlows — Revenue at Risk & Indicative Quote</title>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-K7BTXNPB6P"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-K7BTXNPB6P');
-</script>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
-<style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  :root{
-    --blue:#2979FF;
-    --blue-dim:rgba(41,121,255,0.12);
-    --blue-border:rgba(41,121,255,0.3);
-    --bg:#080b12;
-    --border:rgba(255,255,255,0.08);
-    --text:#e8eaf0;
-    --muted:rgba(255,255,255,0.45);
-    --faint:rgba(255,255,255,0.15);
-    --error:#ff6b6b;
-  }
-  html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
-  nav{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 3rem;border-bottom:0.5px solid var(--border);position:sticky;top:0;z-index:100;background:rgba(8,11,18,0.92);backdrop-filter:blur(12px)}
-  .logo{font-family:'Syne',sans-serif;font-size:20px;font-weight:600;color:#fff;letter-spacing:-0.5px;text-decoration:none}.logo span{color:var(--blue)}
-  .nav-cta{background:var(--blue);color:#fff;border:none;padding:9px 20px;border-radius:6px;font-size:14px;font-family:'Inter',sans-serif;cursor:pointer;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
-  .nav-cta:hover{background:#1a6aff}
-  .hero{padding:5.25rem 3rem 5rem;text-align:center;max-width:920px;margin:0 auto;position:relative}
-  .hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse at center,rgba(41,121,255,0.08) 0%,transparent 70%);pointer-events:none}
-  .badge{display:inline-flex;align-items:center;gap:6px;background:var(--blue-dim);border:0.5px solid var(--blue-border);color:var(--blue);font-size:12px;padding:5px 14px;border-radius:20px;margin-bottom:1.5rem;letter-spacing:0.5px;font-weight:500}
-  .badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2s infinite}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
-  h1{font-family:'Syne',sans-serif;font-size:58px;font-weight:600;line-height:1.16;letter-spacing:-2px;margin-bottom:1.5rem;color:#fff;padding-bottom:.08em}
-  h1 em{color:var(--blue);font-style:normal}
-  .sub{font-size:19px;color:var(--muted);line-height:1.7;margin-bottom:2.25rem;max-width:690px;margin-left:auto;margin-right:auto;font-weight:300}
-  .sub strong{color:rgba(255,255,255,0.75);font-weight:400}
-  .quote-box{background:rgba(255,255,255,0.025);border:0.5px solid var(--blue-border);border-radius:16px;padding:2.25rem;max-width:680px;margin:0 auto;text-align:left}
-  .quote-label{font-size:13px;color:var(--muted);margin-bottom:1.5rem;line-height:1.6;text-align:center}
-  .field-grid{display:grid;grid-template-columns:1fr;gap:14px}
-  .field{min-width:0;background:rgba(255,255,255,0.018);border:0.5px solid var(--border);border-radius:10px;padding:1rem}
-  .field.full{grid-column:auto}
-  .step-label{font-size:11px;color:var(--blue);letter-spacing:1px;text-transform:uppercase;font-weight:500;margin-bottom:.35rem}
-  label.question{display:block;font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:0.55rem;font-weight:400}
-  .help{font-size:11px;color:rgba(255,255,255,0.32);margin-top:-3px;margin-bottom:7px;line-height:1.45}
-  input[type="number"],select{background:rgba(255,255,255,0.05);border:0.5px solid var(--faint);border-radius:8px;padding:13px 14px;font-size:15px;color:#fff;font-family:'Inter',sans-serif;width:100%;outline:none;transition:border-color 0.2s;margin-bottom:3px}
-  select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,rgba(255,255,255,.45) 50%),linear-gradient(135deg,rgba(255,255,255,.45) 50%,transparent 50%);background-position:calc(100% - 18px) 19px,calc(100% - 13px) 19px;background-size:5px 5px,5px 5px;background-repeat:no-repeat}
-  option{background:#111722;color:#fff}
-  input[type="number"]::placeholder{color:rgba(255,255,255,0.25)}
-  input[type="number"]:focus,select:focus{border-color:rgba(41,121,255,0.6);background-color:rgba(41,121,255,0.05)}
-  .lost-row{display:grid;grid-template-columns:1fr 150px;gap:10px}
-  .submit-btn{width:100%;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:13px;font-size:15px;font-weight:500;font-family:'Inter',sans-serif;cursor:pointer;margin-top:18px;transition:background 0.2s,transform 0.1s;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;text-align:center}
-  .submit-btn:hover{background:#1a6aff}
-  .submit-btn:active{transform:scale(0.99)}
-  .form-note{font-size:12px;color:rgba(255,255,255,0.25);margin-top:10px;text-align:center}
-  .validation-msg{font-size:13px;color:var(--error);min-height:20px;margin:8px 0 0;text-align:center}
-  .result{display:none;margin-top:1.75rem;border-top:0.5px solid var(--border);padding-top:1.75rem;scroll-margin-top:110px}
-  .result.visible{display:block}
-  .risk-card,.quote-card{border:0.5px solid var(--blue-border);border-radius:14px;padding:1.5rem}
-  .risk-card{background:rgba(41,121,255,0.06);margin-bottom:14px}
-  .quote-card{background:rgba(255,255,255,0.025)}
-  .result-kicker{font-size:12px;color:var(--blue);letter-spacing:1px;text-transform:uppercase;font-weight:500;margin-bottom:0.55rem}
-  .result h2{font-family:'Syne',sans-serif;font-size:27px;font-weight:600;color:#fff;margin-bottom:0.7rem;letter-spacing:-0.5px;line-height:1.3;padding-bottom:.05em}
-  .risk-values{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:1rem}
-  .risk-value{background:rgba(255,255,255,0.035);border:0.5px solid var(--border);border-radius:10px;padding:1rem}
-  .risk-value span{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;margin-bottom:.25rem}
-  .risk-value strong{display:block;font-family:'Syne',sans-serif;font-size:30px;line-height:1.2;color:#fff;font-weight:600}
-  .price{font-family:'Syne',sans-serif;font-size:44px;font-weight:600;color:#fff;line-height:1.15;margin:0.75rem 0 1rem;letter-spacing:-1px;padding-bottom:.05em}
-  .price span{font-family:'Inter',sans-serif;font-size:15px;font-weight:400;color:var(--muted);letter-spacing:0}
-  .result p{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:1rem}
-  .result p strong{color:rgba(255,255,255,0.82);font-weight:500}
-  .terms-list{display:grid;gap:0.5rem;margin:1rem 0 1.25rem;list-style:none}
-  .terms-list li{font-size:13px;color:rgba(255,255,255,0.58);line-height:1.5;padding-left:1.25rem;position:relative}
-  .terms-list li::before{content:'';position:absolute;left:0;top:0.55rem;width:6px;height:6px;border-radius:50%;background:var(--blue)}
-  .important{background:rgba(255,255,255,0.025);border-left:2px solid var(--blue);padding:1rem 1rem .05rem;margin:1.1rem 0}
-  .important p{font-size:13px;margin-bottom:.85rem}
-  .disclaimer{border-top:0.5px solid var(--border);margin-top:1.25rem;padding-top:1.1rem;font-size:12px!important;color:rgba(255,255,255,0.35)!important;line-height:1.65!important}
-  .booking{padding:4rem 3rem;max-width:720px;margin:0 auto;text-align:center;border-top:0.5px solid var(--border)}
-  .booking h2{font-family:'Syne',sans-serif;font-size:36px;font-weight:600;color:#fff;margin-bottom:.75rem;letter-spacing:-.5px;line-height:1.3;padding-bottom:.05em}
-  .booking p{font-size:16px;color:var(--muted);line-height:1.8;margin-bottom:1rem}
-  .booking p strong{color:rgba(255,255,255,.82);font-weight:500}
-  .booking-btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:14px 32px;font-size:16px;font-weight:500;font-family:'Inter',sans-serif;cursor:pointer;transition:background .2s;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;margin-top:1.25rem}
-  .booking-btn:hover{background:#1a6aff}
-  footer{border-top:0.5px solid var(--border);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,0.2)}
-  footer a{color:rgba(255,255,255,0.3);text-decoration:none}
-  footer a:hover{color:var(--blue)}
-  .footer-links{display:flex;gap:1.5rem}
-  @media(max-width:760px){
-    nav{padding:1rem 1.25rem;gap:1rem}.logo{font-size:18px;white-space:nowrap}.nav-cta{padding:8px 12px;font-size:12px}
-    .hero{padding:3.75rem 1.25rem 3.5rem}.hero::before{width:320px;height:300px}h1{font-size:41px;letter-spacing:-1.2px}.sub{font-size:16px;margin-bottom:2rem}
-    .quote-box{padding:1.4rem;border-radius:14px}.field-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.lost-row{grid-template-columns:1fr 125px}
-    .risk-values{grid-template-columns:1fr}.price{font-size:36px}.booking{padding:3rem 1.25rem}.booking h2{font-size:30px}
-    footer{padding:1.5rem 1.25rem;flex-direction:column;gap:1rem;text-align:center}.footer-links{gap:1rem;flex-wrap:wrap;justify-content:center}
-  }
-</style>
-</head>
-<body>
-<nav>
-  <a class="logo" href="../">Prospect<span>Flows</span></a>
-  <a class="nav-cta" href="../">Back to main site</a>
-</nav>
-
-<main>
-  <section class="hero">
-    <div class="badge">Revenue at Risk Calculator</div>
-    <h1>What could missed leads be<br><em>costing your business?</em></h1>
-    <p class="sub">Use the calculator to estimate the revenue at risk when enquiries are not converted because of <strong>slow or missed follow-up.</strong> Your indicative quote will then appear on this page.</p>
-
-    <div class="quote-box" id="quote">
-      <p class="quote-label">Enter your best estimates. The result is an illustration, not a guarantee of loss or recovered revenue.</p>
-
-      <div class="field-grid">
-        <div class="field">
-          <div class="step-label">Step 1</div>
-          <label class="question" for="enquiries">Enquiries (leads) per month</label>
-          <input type="number" id="enquiries" min="1" step="1" inputmode="numeric" placeholder="Example: 75"/>
-        </div>
-
-        <div class="field">
-          <div class="step-label">Step 2</div>
-          <label class="question" for="conversion-rate">Conversion rate from enquiry to customer (%)</label>
-          <input type="number" id="conversion-rate" min="0.1" max="100" step="0.1" inputmode="decimal" placeholder="Example: 25"/>
-        </div>
-
-        <div class="field full">
-          <div class="step-label">Step 3</div>
-          <label class="question" for="lost-leads">Estimated leads not converted due to slow or missed follow-up</label>
-          <p class="help">Use either a number of leads or a percentage of monthly enquiries.</p>
-          <div class="lost-row">
-            <input type="number" id="lost-leads" min="0.1" step="0.1" inputmode="decimal" placeholder="Example: 8"/>
-            <select id="lost-type" aria-label="Choose number or percentage">
-              <option value="number">Number</option>
-              <option value="percentage">Percentage</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="field full">
-          <div class="step-label">Step 4</div>
-          <label class="question" for="customer-value">Average customer value (£)</label>
-          <input type="number" id="customer-value" min="1" step="0.01" inputmode="decimal" placeholder="Example: 1250"/>
-        </div>
-      </div>
-
-      <p class="validation-msg" id="validation-msg" role="alert"></p>
-      <button class="submit-btn" type="button" onclick="generateQuote()">Calculate revenue at risk and show indicative quote</button>
-      <p class="form-note">No payment required. Your result and indicative price appear below.</p>
-
-      <div class="result" id="result" aria-live="polite">
-        <div class="risk-card">
-          <div class="result-kicker">Estimated revenue at risk</div>
-          <h2>What slow or missed follow-up could be costing you</h2>
-          <div class="risk-values">
-            <div class="risk-value">
-              <span>Estimated monthly revenue at risk</span>
-              <strong id="monthly-risk">£0</strong>
-            </div>
-            <div class="risk-value">
-              <span>Estimated annual revenue at risk</span>
-              <strong id="annual-risk">£0</strong>
-            </div>
-          </div>
-          <p class="disclaimer">This estimate assumes that only a proportion of the affected enquiries would have converted, based on the conversion rate you entered. It is illustrative and does not represent a guaranteed loss or guaranteed recovery.</p>
-        </div>
-
-        <div class="quote-card">
-          <div class="result-kicker">Indicative Standard Solution quote</div>
-          <h2>Prospect Flows Standard Speed-to-Lead Solution</h2>
-          <div class="price">£500<span>/month</span></div>
-          <ul class="terms-list">
-            <li>Two months payable upfront</li>
-            <li>Then monthly rolling</li>
-            <li>No long-term contract</li>
-            <li>Cancel anytime</li>
-            <li>Subject to fair use and the agreed standard scope</li>
-          </ul>
-
-          <div class="important">
-            <p><strong>This is an indicative, non-binding price.</strong> The calculator does not confirm that your requirements qualify for the Standard Solution.</p>
-            <p>A short scope call is required to clarify your requirements, confirm whether the Standard Solution is suitable and agree the final scope and price.</p>
-            <p><strong>Bespoke solutions are available</strong> where your requirements fall outside the standard scope. Any bespoke work will be discussed and quoted separately.</p>
-          </div>
-
-          <a class="submit-btn" href="https://calendar.app.google/S8iPG5Bbs254E7rS6">Book your 10–15 minute scope call</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="booking">
-    <h2>Confirm the right solution for your business.</h2>
-    <p>The scope call confirms your lead-intake route, workflow requirements and whether the Standard Solution is suitable.</p>
-    <p><strong>Where your requirements are more complex, a bespoke solution is available and will be quoted separately.</strong></p>
-    <a class="booking-btn" href="https://calendar.app.google/S8iPG5Bbs254E7rS6">Book your 10–15 minute scope call</a>
-  </section>
-</main>
-
-<footer>
-  <span>© 2026 ProspectFlows</span>
-  <div class="footer-links">
-    <a href="../privacy-policy.html">Privacy Policy</a>
-    <a href="../terms.html">Terms & Conditions</a>
-  </div>
-</footer>
-
-<script>
-function formatGBP(value){
-  return new Intl.NumberFormat('en-GB',{style:'currency',currency:'GBP',maximumFractionDigits:0}).format(value);
-}
-
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark">
+<title>Prospect Flows — Revenue at Risk Calculator</title>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/theme.css">
+</head><body><a href="#main-content" class="skip">Skip to content</a><header class="site-header"><div class="header-inner"><a class="brand" href="../" aria-label="Prospect Flows home"><img src="../assets/logo-mark.svg" alt=""><span>Prospect Flows</span></a><nav class="site-nav" aria-label="Main navigation"><a href="../">Home</a><a href="../privacy-policy.html">Privacy Policy</a><a href="../terms.html">Terms</a></nav></div></header><main id="main-content" class="site-wrap">
+<section class="quote-hero"><span class="eyebrow">Revenue at Risk Calculator · Where ‘speed to lead’ matters.</span><h1>How much revenue opportunity do your enquiries represent?</h1>
+<p>Estimate the monthly value of your incoming enquiries, then see the indicative price of the Prospect Flows Standard Solution. This is an opportunity estimate, not a claim that all this revenue is being lost.</p></section>
+<section class="quote-card-shell" id="quote" aria-label="Revenue opportunity calculator"><p class="quote-intro">Three simple estimates. No need to guess how many leads slow follow-up may have cost you.</p>
+<div class="quote-fields">
+<div class="quote-field"><div class="step-label">Step 1</div><label class="question" for="enquiries">Monthly enquiries (leads)</label><input type="number" id="enquiries" min="1" step="1" inputmode="numeric" placeholder="Example: 75" required><p class="help">The number of enquiries your business normally receives each month.</p></div>
+<div class="quote-field"><div class="step-label">Step 2</div><label class="question" for="conversion-rate">Typical enquiry-to-customer conversion rate (%)</label><input type="number" id="conversion-rate" min="0.1" max="100" step="0.1" inputmode="decimal" placeholder="Example: 25" required><p class="help">Your estimate of the share of enquiries that become customers.</p></div>
+<div class="quote-field"><div class="step-label">Step 3</div><label class="question" for="customer-value">Average customer value (£)</label><input type="number" id="customer-value" min="0.01" step="0.01" inputmode="decimal" placeholder="Example: 1250" required><p class="help">The average value of a new customer to your business.</p></div>
+</div><p class="validation-msg" id="validation-msg" role="alert"></p>
+<div class="quote-submit"><button class="primary-button" type="button" onclick="generateQuote()">Calculate revenue opportunity and view indicative quote</button><p class="form-note">Your result appears below. No payment required.</p></div>
+<div class="quote-results" id="result" aria-live="polite"><div class="results-grid">
+<div class="risk-card"><div class="result-kicker">Illustrative enquiry value</div><h2>Estimated revenue opportunity</h2>
+<div class="risk-stat"><small>Monthly revenue opportunity</small><strong id="monthly-risk">£0</strong></div>
+<div class="risk-stat"><small>Annual revenue opportunity*</small><strong id="annual-risk">£0</strong></div>
+<p class="result-caveat"><strong>Important:</strong> This is the potential value represented by your enquiries, not revenue already lost or guaranteed to be recovered. Some enquiries may convert successfully today. The amount genuinely at risk from slow or missed responses depends on how your business handles them.</p>
+<p class="result-caveat">*Annual estimate assumes your monthly enquiries, conversion rate and average customer value stay broadly the same for twelve months.</p>
+</div>
+<div class="price-card"><div class="result-kicker">Indicative, non-binding price</div><h2>Prospect Flows Standard Speed-to-Lead Solution</h2><p class="result-price">£500<span>/month</span></p>
+<ul class="terms-list"><li>Two months payable upfront</li><li>Then monthly rolling</li><li>No long-term contract</li><li>Cancel anytime</li><li>Subject to fair use and the agreed standard scope</li></ul>
+<p class="quote-disclaimer">A short scoping call confirms whether your requirements fit the Standard Solution and the final price. More complex or bespoke work is discussed and quoted separately.</p>
+<a class="primary-button" href="https://calendar.app.google/S8iPG5Bbs254E7rS6">Book your 10–15 minute scoping call</a></div>
+</div></div></section>
+<section class="booking-panel"><h2>Let's confirm the right solution for your business.</h2><p>The scope call identifies your lead-intake route, requirements and suitability for the Standard Solution. Bespoke requirements can be discussed and quoted separately.</p><a class="booking-btn" href="https://calendar.app.google/S8iPG5Bbs254E7rS6">Book your 10–15 minute scoping call</a></section></main><footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a class="brand" href="../"><img src="../assets/logo-mark.svg" alt=""><span>Prospect Flows</span></a><span class="footer-tagline">Where ‘speed to lead’ matters.</span></div><div class="footer-links"><button type="button" class="privacy-settings" id="manage-analytics">Analytics preferences</button><a href="../privacy-policy.html">Privacy Policy</a><a href="../terms.html">Terms &amp; Conditions</a></div></div><p class="copyright">© 2026 Prospect Flows</p></footer><script>
+function formatGBP(v){return new Intl.NumberFormat('en-GB',{style:'currency',currency:'GBP',maximumFractionDigits:0}).format(v)}
 function generateQuote(){
-  var enquiriesInput=document.getElementById('enquiries');
-  var lostInput=document.getElementById('lost-leads');
-  var lostType=document.getElementById('lost-type').value;
-  var conversionInput=document.getElementById('conversion-rate');
-  var customerValueInput=document.getElementById('customer-value');
-  var validation=document.getElementById('validation-msg');
-  var result=document.getElementById('result');
-
-  var enquiries=Number(enquiriesInput.value);
-  var lostValue=Number(lostInput.value);
-  var conversionRate=Number(conversionInput.value);
-  var customerValue=Number(customerValueInput.value);
-
-  validation.textContent='';
-  result.classList.remove('visible');
-  [enquiriesInput,lostInput,conversionInput,customerValueInput].forEach(function(el){el.removeAttribute('aria-invalid')});
-
-  if(!Number.isFinite(enquiries)||enquiries<=0||!Number.isInteger(enquiries)){
-    validation.textContent='Please enter a whole number above zero for monthly enquiries.';
-    enquiriesInput.setAttribute('aria-invalid','true');enquiriesInput.focus();return;
-  }
-  if(!Number.isFinite(lostValue)||lostValue<=0){
-    validation.textContent='Please enter an estimated number or percentage of leads not converted.';
-    lostInput.setAttribute('aria-invalid','true');lostInput.focus();return;
-  }
-  if(lostType==='percentage'&&lostValue>100){
-    validation.textContent='The estimated percentage of leads not converted cannot exceed 100%.';
-    lostInput.setAttribute('aria-invalid','true');lostInput.focus();return;
-  }
-  if(lostType==='number'&&lostValue>enquiries){
-    validation.textContent='The estimated number of leads not converted cannot exceed total monthly enquiries.';
-    lostInput.setAttribute('aria-invalid','true');lostInput.focus();return;
-  }
-  if(!Number.isFinite(conversionRate)||conversionRate<=0||conversionRate>100){
-    validation.textContent='Please enter a conversion rate above 0% and no higher than 100%.';
-    conversionInput.setAttribute('aria-invalid','true');conversionInput.focus();return;
-  }
-  if(!Number.isFinite(customerValue)||customerValue<=0){
-    validation.textContent='Please enter an average customer value above £0.';
-    customerValueInput.setAttribute('aria-invalid','true');customerValueInput.focus();return;
-  }
-
-  var affectedLeads=lostType==='percentage' ? enquiries*(lostValue/100) : lostValue;
-  var monthlyRisk=affectedLeads*(conversionRate/100)*customerValue;
-  var annualRisk=monthlyRisk*12;
-
-  document.getElementById('monthly-risk').textContent=formatGBP(monthlyRisk);
-  document.getElementById('annual-risk').textContent=formatGBP(annualRisk);
-  result.classList.add('visible');
-  result.scrollIntoView({behavior:'smooth',block:'start'});
-
-  if(window.gtag){
-    gtag('event','revenue_risk_quote_generated',{
-      enquiries_per_month:enquiries,
-      lost_leads_input:lostValue,
-      lost_leads_type:lostType,
-      conversion_rate:conversionRate,
-      average_customer_value:customerValue,
-      estimated_monthly_revenue_at_risk:Math.round(monthlyRisk)
-    });
-  }
+var e=document.getElementById('enquiries'),c=document.getElementById('conversion-rate'),a=document.getElementById('customer-value');
+var validation=document.getElementById('validation-msg'),result=document.getElementById('result');
+validation.textContent='';result.classList.remove('visible');[e,c,a].forEach(function(x){x.removeAttribute('aria-invalid')});
+var enquiries=Number(e.value),conversion=Number(c.value),aov=Number(a.value);
+function error(el,message){validation.textContent=message;el.setAttribute('aria-invalid','true');el.focus()}
+if(e.value.trim()===''||!Number.isInteger(enquiries)||enquiries<=0)return error(e,'Enter a whole number greater than zero for monthly enquiries.');
+if(c.value.trim()===''||!Number.isFinite(conversion)||conversion<=0||conversion>100)return error(c,'Enter a conversion rate above 0% and no greater than 100%.');
+if(a.value.trim()===''||!Number.isFinite(aov)||aov<=0)return error(a,'Enter an average customer value greater than £0.');
+var monthly=enquiries*(conversion/100)*aov,annual=monthly*12;
+document.getElementById('monthly-risk').textContent=formatGBP(monthly);
+document.getElementById('annual-risk').textContent=formatGBP(annual);
+result.classList.add('visible');result.scrollIntoView({behavior:'smooth',block:'start'});
+if(typeof window.gtag==='function'){gtag('event','revenue_opportunity_estimate_generated')}
 }
-
-document.querySelectorAll('#quote input, #quote select').forEach(function(el){
-  el.addEventListener('input',function(){
-    document.getElementById('validation-msg').textContent='';
-    el.removeAttribute('aria-invalid');
-  });
-});
-</script>
-</body>
-</html>
+document.querySelectorAll('#quote input').forEach(function(el){el.addEventListener('input',function(){document.getElementById('validation-msg').textContent='';el.removeAttribute('aria-invalid')})});
+</script><div id="privacy-banner" class="privacy-banner" role="region" aria-label="Analytics preferences"><p>We use optional analytics to understand website usage. Your choice does not affect the demonstration or calculator. <a href="/privacy-policy.html">Privacy information</a>.</p><div class="actions"><button class="reject" type="button" id="reject-analytics">Reject analytics</button><button class="allow" type="button" id="allow-analytics">Allow analytics</button></div></div>
+<script>
+(function(){
+  var key='pf-analytics-preference',banner=document.getElementById('privacy-banner');
+  function loadAnalytics(){
+    if(window.pfAnalyticsLoaded)return;
+    window.pfAnalyticsLoaded=true;
+    window.dataLayer=window.dataLayer||[];
+    window.gtag=function(){dataLayer.push(arguments)};
+    gtag('js',new Date());gtag('config','G-K7BTXNPB6P');
+    var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-K7BTXNPB6P';document.head.appendChild(s);
+  }
+  function read(){try{return localStorage.getItem(key)}catch(e){return null}}
+  function save(value){try{localStorage.setItem(key,value)}catch(e){}window.location.reload()}
+  document.getElementById('manage-analytics').addEventListener('click',function(){banner.classList.add('visible')});document.getElementById('allow-analytics').addEventListener('click',function(){save('allow')});
+  document.getElementById('reject-analytics').addEventListener('click',function(){save('reject')});
+  var choice=read();if(choice==='allow')loadAnalytics();else if(choice!=='reject')banner.classList.add('visible');
+})();
+</script></body></html>

@@ -1,195 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Prospect Flows — Where ‘Speed to Lead’ Matters</title>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-K7BTXNPB6P"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-K7BTXNPB6P');
-</script>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
-<style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  :root{
-    --blue:#2979FF;
-    --blue-dim:rgba(41,121,255,0.12);
-    --blue-border:rgba(41,121,255,0.3);
-    --bg:#080b12;
-    --border:rgba(255,255,255,0.08);
-    --text:#e8eaf0;
-    --muted:rgba(255,255,255,0.45);
-    --faint:rgba(255,255,255,0.15);
-  }
-  html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
-  nav{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 3rem;border-bottom:0.5px solid var(--border);position:sticky;top:0;z-index:100;background:rgba(8,11,18,0.92);backdrop-filter:blur(12px)}
-  .logo{font-family:'Syne',sans-serif;font-size:20px;font-weight:600;color:#fff;letter-spacing:-0.5px}.logo span{color:var(--blue)}
-  .nav-cta{background:var(--blue);color:#fff;border:none;padding:9px 20px;border-radius:6px;font-size:14px;font-family:'Inter',sans-serif;cursor:pointer;font-weight:500}
-  .nav-cta:hover{background:#1a6aff}
-  .hero{padding:7rem 3rem 5rem;text-align:center;max-width:860px;margin:0 auto;position:relative}
-  .hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse at center,rgba(41,121,255,0.08) 0%,transparent 70%);pointer-events:none}
-  .badge{display:inline-flex;align-items:center;gap:6px;background:var(--blue-dim);border:0.5px solid var(--blue-border);color:var(--blue);font-size:12px;padding:5px 14px;border-radius:20px;margin-bottom:2rem;letter-spacing:0.5px;font-weight:500}
-  .badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2s infinite}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
-  h1{font-family:'Syne',sans-serif;font-size:62px;font-weight:600;line-height:1.18;letter-spacing:-2px;margin-bottom:1.5rem;color:#fff;padding-bottom:0.06em}
-  h1 em{color:var(--blue);font-style:normal}
-  .sub{font-size:19px;color:var(--muted);line-height:1.7;margin-bottom:3rem;max-width:580px;margin-left:auto;margin-right:auto;font-weight:300}
-  .sub strong{color:rgba(255,255,255,0.75);font-weight:400}
-  .cta-box{background:rgba(255,255,255,0.025);border:0.5px solid var(--blue-border);border-radius:16px;padding:2.25rem;max-width:540px;margin:0 auto}
-  .cta-label{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.5}
-  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
-  .field-row.single{grid-template-columns:1fr}
-  input[type="text"],input[type="email"]{background:rgba(255,255,255,0.05);border:0.5px solid var(--faint);border-radius:8px;padding:12px 14px;font-size:14px;color:#fff;font-family:'Inter',sans-serif;width:100%;outline:none;transition:border-color 0.2s}
-  input[type="text"]::placeholder,input[type="email"]::placeholder{color:rgba(255,255,255,0.25)}
-  input[type="text"]:focus,input[type="email"]:focus{border-color:rgba(41,121,255,0.6);background:rgba(41,121,255,0.05)}
-  .consent-row{display:flex;align-items:flex-start;gap:10px;margin:12px 0;text-align:left}
-  .consent-row input[type="checkbox"]{width:16px;height:16px;margin-top:3px;flex-shrink:0;accent-color:var(--blue);cursor:pointer}
-  .consent-row label{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.5;cursor:pointer}
-  .consent-row label a{color:var(--blue);text-decoration:none}
-  .consent-row label a:hover{text-decoration:underline}
-  .h-captcha{display:flex;justify-content:center;margin:14px 0 10px}
-  .captcha-error{font-size:12px;color:#ffb4b4;margin:8px 0 0;display:none}
-  .submit-btn{width:100%;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:13px;font-size:15px;font-weight:500;font-family:'Inter',sans-serif;cursor:pointer;margin-top:4px;transition:background 0.2s,transform 0.1s}
-  .submit-btn:hover{background:#1a6aff}
-  .submit-btn:active{transform:scale(0.99)}
-  .submit-btn:disabled{background:rgba(41,121,255,0.3);cursor:not-allowed}
-  .form-note{font-size:12px;color:rgba(255,255,255,0.25);margin-top:10px}
-  .pillars{display:grid;grid-template-columns:1fr 1fr;border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border);margin:5rem 0}
-  .pillar{padding:3rem;border-right:0.5px solid var(--border);position:relative;overflow:hidden}
-  .pillar:last-child{border-right:none}
-  .p-icon{width:44px;height:44px;background:var(--blue-dim);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem}
-  .pillar h3{font-family:'Syne',sans-serif;font-size:18px;font-weight:600;color:#fff;margin-bottom:0.6rem}
-  .pillar p{font-size:14px;color:var(--muted);line-height:1.7}
-  .how{padding:4rem 3rem;max-width:900px;margin:0 auto}
-  .section-label{font-size:12px;color:var(--blue);letter-spacing:1.5px;text-transform:uppercase;font-weight:500;margin-bottom:0.75rem}
-  .how h2{font-family:'Syne',sans-serif;font-size:36px;font-weight:600;color:#fff;margin-bottom:0.5rem;letter-spacing:-0.5px}
-  .how .sub2{font-size:15px;color:var(--muted);margin-bottom:3rem}
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
-  .step{background:var(--bg);padding:1.75rem 1.25rem}
-  .step-num{font-size:11px;color:var(--blue);font-weight:600;letter-spacing:1px;margin-bottom:1rem}
-  .step h4{font-family:'Syne',sans-serif;font-size:15px;font-weight:600;color:#fff;margin-bottom:0.5rem}
-  .step p{font-size:13px;color:var(--muted);line-height:1.6}
-  .offer{padding:4rem 3rem;max-width:680px;margin:0 auto;text-align:center;border-top:0.5px solid var(--border)}
-  .offer p{font-size:17px;color:var(--muted);line-height:1.8;margin-bottom:1rem}
-  .offer p strong{color:rgba(255,255,255,0.8);font-weight:400}
-  .offer-cta{margin-top:2rem}
-  .offer-btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:14px 32px;font-size:16px;font-weight:500;font-family:'Inter',sans-serif;cursor:pointer;transition:background 0.2s}
-  .offer-btn:hover{background:#1a6aff}
-  footer{border-top:0.5px solid var(--border);padding:2rem 3rem;display:grid;grid-template-columns:auto 1fr auto;gap:2rem;align-items:center;font-size:12px;color:rgba(255,255,255,0.2)}
-  footer a{color:rgba(255,255,255,0.3);text-decoration:none}
-  footer a:hover{color:var(--blue)}
-  .footer-disclaimer{max-width:720px;justify-self:center;text-align:center;color:rgba(255,255,255,0.28);line-height:1.5}
-  .footer-links{display:flex;gap:1.5rem}
-  .fade{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
-  .fade.visible{opacity:1;transform:none}
-
-  .outcomes{padding:4rem 3rem;max-width:980px;margin:0 auto}
-  .outcomes h2{font-family:'Syne',sans-serif;font-size:36px;font-weight:600;line-height:1.28;color:#fff;margin-bottom:0.5rem;letter-spacing:-0.5px;padding-bottom:0.06em}
-  .outcomes .sub2{font-size:15px;color:var(--muted);margin-bottom:2.5rem}
-  .outcome-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:0.5px solid var(--border)}
-  .outcome{background:var(--bg);padding:1.2rem 1.35rem;display:flex;align-items:flex-start;gap:12px}
-  .outcome-check{width:22px;height:22px;border-radius:50%;background:var(--blue-dim);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0;margin-top:1px}
-  .outcome p{font-size:14px;color:rgba(255,255,255,0.72);line-height:1.55}
-  .demo-section{padding:5rem 3rem;max-width:760px;margin:0 auto;text-align:center;border-top:0.5px solid var(--border)}
-  .demo-section h2{font-family:'Syne',sans-serif;font-size:38px;font-weight:600;line-height:1.28;color:#fff;margin-bottom:0.75rem;letter-spacing:-0.5px;padding-bottom:0.06em}
-  .demo-section>.sub2{font-size:15px;color:var(--muted);margin-bottom:2rem}
-  @media(max-width:700px){
-    nav{padding:1rem 1.25rem}
-    .nav-cta{padding:8px 12px;font-size:12px}
-    .hero{padding:5rem 1.25rem 3.5rem}
-    h1{font-size:42px;letter-spacing:-1px}
-    .sub{font-size:17px}
-    .outcomes,.demo-section{padding:3.5rem 1.25rem}
-    .outcome-grid{grid-template-columns:1fr}
-    .field-row{grid-template-columns:1fr}
-    footer{padding:1.5rem 1.25rem;grid-template-columns:1fr;gap:1rem;align-items:start}
-    .footer-disclaimer{justify-self:start;text-align:left}
-  }
-
-</style>
-</head>
-<body>
-
-<nav>
-  <div class="logo">Prospect<span>Flows</span></div>
-  <button class="nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">See Prospect Flows in action</button>
-</nav>
-
-<div class="hero">
-  <div class="badge">End-to-End Lead Management</div>
-  <h1>Never let a hot lead<br><em>go cold.</em></h1>
-  <p class="sub">You are already paying for leads — or paying someone to generate them. The hidden cost is what happens next. Prospect Flows makes sure every genuine enquiry is acknowledged, routed, logged and monitored from the moment it arrives.</p>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark">
+<title>Prospect Flows — Where ‘speed to lead’ matters.</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/theme.css">
+</head><body><a href="#main-content" class="skip">Skip to content</a><header class="site-header"><div class="header-inner"><a class="brand" href="" aria-label="Prospect Flows home"><img src="assets/logo-mark.svg" alt=""><span>Prospect Flows</span></a><nav class="site-nav" aria-label="Main navigation"><a href="#how-it-works">How It Works</a><a href="#standard-solution">Standard Solution</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms.html">Terms</a></nav></div></header><main id="main-content" class="site-wrap"><section class="hero" aria-labelledby="hero-title"><div class="wave-decoration" aria-hidden="true"></div>
+<div class="hero-brand"><img src="assets/logo-mark.svg" alt=""><span>Prospect Flows</span></div><p class="tagline">Where ‘speed to lead’ matters.</p><div class="hero-rule"></div>
+<h1 id="hero-title">Never let a hot lead go cold.</h1>
+<p class="hero-lede">Every delayed response risks a lost opportunity. Prospect Flows helps businesses acknowledge, route, log and follow up enquiries quickly and consistently, so valuable opportunities don't go cold.</p>
+<div class="feature-grid">
+<div class="feature-card"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none"><path d="M20 2L6 21h11l-2 13 15-20H19l1-12Z" fill="currentColor"/></svg><strong>Automated response typically sent within 60 seconds*</strong></div>
+<div class="feature-card"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"><path d="M18 3 33 12 18 21 3 12 18 3Z"/><path d="m4 20 14 9 14-9M4 26l14 8 14-8"/></svg><strong>Standard Solution in action</strong></div>
+<div class="feature-card"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.6"><circle cx="18" cy="18" r="15"/><path d="M23 11c-7-3-11 2-8 8 1 2 0 6-3 7h13M12 21h10"/></svg><strong>Indicative pricing at £500/month</strong></div>
+<div class="feature-card"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"><rect x="3" y="5" width="30" height="26" rx="3"/><path d="m15 11 10 7-10 7V11Z"/></svg><strong>Experience the workflow before you buy</strong></div>
+</div></section><section id="experience" class="experience" aria-labelledby="experience-title"><h2 id="experience-title">Experience the Prospect Flows Standard Solution</h2>
+<div class="experience-copy"><p>Complete the form below to experience our Standard Solution in action.</p><p>See how your enquiry is automatically acknowledged, just as it would be for your own customers if you choose to work with us.</p><p>Your automated response will also include a link to our Revenue at Risk Calculator, where you can explore the potential commercial impact of slow or missed follow-up and view our indicative pricing.</p></div>
+<form class="demo-form" id="cta" action="https://api.web3forms.com/submit" method="POST">
+<!-- Preserve the production Web3Forms routing and hidden fields unchanged. -->
+<input type="hidden" name="access_key" value="8eabd017-1b37-4310-bc9a-291eca421850">
+<input type="hidden" name="subject" value="PF Website Form Submission">
+<input type="hidden" name="from_name" value="Prospect Flows Website">
+<input type="hidden" name="source" value="PF_FORM_SUBMISSION_V1">
+<input type="hidden" name="routing_marker" value="PF_FORM_SUBMISSION_V1">
+<input type="hidden" name="message" value="PF_FORM_SUBMISSION_V1 - Website form enquiry from the Prospect Flows landing page.">
+<div class="form-grid">
+<label for="inp-name">Name</label><input type="text" id="inp-name" name="name" placeholder="Enter your name" autocomplete="name" minlength="2" maxlength="80" required>
+<label for="inp-biz">Business Name</label><input type="text" id="inp-biz" name="business" placeholder="Enter your business name" autocomplete="organization" maxlength="120">
+<label for="inp-email">Email Address</label><input type="email" id="inp-email" name="email" placeholder="Enter your email address" autocomplete="email" minlength="5" maxlength="120" required>
 </div>
-
-<div class="outcomes">
-  <div class="section-label fade">What you get</div>
-  <h2 class="fade">Every lead handled.<br>Nothing left to chance.</h2>
-  <p class="sub2 fade">A fully managed lead-response process designed to stop genuine enquiries being missed, delayed or lost.</p>
-
-  <div class="outcome-grid fade">
-    <div class="outcome"><span class="outcome-check">✓</span><p>One lead source fully managed</p></div>
-    <div class="outcome"><span class="outcome-check">✓</span><p>Every genuine enquiry validated</p></div>
-    <div class="outcome"><span class="outcome-check">✓</span><p>Personalised acknowledgement sent in under 60 seconds*</p></div>
-    <div class="outcome"><span class="outcome-check">✓</span><p>Instant notification to your team</p></div>
-    <div class="outcome"><span class="outcome-check">✓</span><p>Automatic lead logging</p></div>
-    <div class="outcome"><span class="outcome-check">✓</span><p>Follow-up reminders for unactioned leads</p></div>
-    <div class="outcome"><span class="outcome-check">✓</span><p>Fully managed service</p></div>
-    <div class="outcome"><span class="outcome-check">✓</span><p>Continuous monitoring</p></div>
-    <div class="outcome"><span class="outcome-check">✓</span><p>Failure detection and recovery</p></div>
-    <div class="outcome"><span class="outcome-check">✓</span><p>Monthly operational reporting</p></div>
-  </div>
-</div>
-
-<div class="demo-section">
-  <div class="section-label fade">Free demonstration</div>
-  <h2 class="fade">See Prospect Flows in Action</h2>
-  <p class="sub2 fade">Complete the form below to see how our Standard Solution manages a genuine enquiry from start to finish. It's free and without obligation.</p>
-  <form class="cta-box" id="cta" action="https://api.web3forms.com/submit" method="POST">
-    <p class="cta-label">Complete the form below to see how our Standard Solution manages a genuine enquiry from start to finish. It's free and without obligation.</p>
-
-    <!-- Web3Forms access key: this is expected to be visible in static HTML. -->
-    <input type="hidden" name="access_key" value="8eabd017-1b37-4310-bc9a-291eca421850">
-
-    <!-- Fixed routing fields for the dedicated form inbox / Make Gmail route. -->
-    <input type="hidden" name="subject" value="PF Website Form Submission">
-    <input type="hidden" name="from_name" value="Prospect Flows Website">
-    <input type="hidden" name="source" value="PF_FORM_SUBMISSION_V1">
-    <input type="hidden" name="routing_marker" value="PF_FORM_SUBMISSION_V1">
-    <input type="hidden" name="message" value="PF_FORM_SUBMISSION_V1 - Website form enquiry from the Prospect Flows landing page.">
-    <div class="field-row">
-      <input type="text" placeholder="Your name" id="inp-name" name="name" autocomplete="name" minlength="2" maxlength="80" required>
-      <input type="text" placeholder="Business name" id="inp-biz" name="business" autocomplete="organization" maxlength="120">
-    </div>
-    <div class="field-row single">
-      <input type="email" placeholder="Work email" id="inp-email" name="email" autocomplete="email" minlength="5" maxlength="120" required>
-    </div>
-    <div class="consent-row">
-      <input type="checkbox" id="inp-consent" name="consent" value="Agreed to be contacted and accepted Privacy Policy and Terms" required>
-      <label for="inp-consent">I agree to be contacted by ProspectFlows about my enquiry. I have read and accept the <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms.html">Terms & Conditions</a>.</label>
-    </div>
-    <div class="h-captcha" data-captcha="true" data-theme="dark"></div>
-    <p class="captcha-error" id="captcha-error">Please complete the captcha before submitting.</p>
-    <button class="submit-btn" id="submit-btn" type="submit">Request Your Free Demonstration</button>
-    <p class="form-note" id="reply-msg">Submit a genuine enquiry and experience the response journey for yourself.</p>
-  </form>
-</div>
-
-<footer>
-  <span>© 2026 ProspectFlows</span>
-  <p class="footer-disclaimer">*Our current solution dispatches acknowledgements in an average of 33 seconds from receipt of an enquiry. The time the response is received may vary depending on the recipient's email provider.</p>
-  <div class="footer-links">
-    <a href="privacy-policy.html">Privacy Policy</a>
-    <a href="terms.html">Terms & Conditions</a>
-  </div>
-</footer>
-
-<script src="https://web3forms.com/client/script.js" async defer></script>
-
+<div class="consent-row"><input type="checkbox" id="inp-consent" name="consent" value="Agreed to be contacted and accepted Privacy Policy and Terms" required><label for="inp-consent">I agree to be contacted by Prospect Flows about my enquiry. I have read and accept the <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms.html">Terms &amp; Conditions</a>.</label></div>
+<div class="h-captcha" data-captcha="true" data-theme="dark"></div>
+<p class="captcha-error" id="captcha-error" role="alert">Please complete the captcha before submitting.</p>
+<div class="form-actions"><button class="submit-btn" id="submit-btn" type="submit">Experience the Standard Solution</button><p class="form-note" id="reply-msg">Free and without obligation.</p></div>
+</form></section><section id="how-it-works" class="how-it-works" aria-labelledby="journey-title"><h2 id="journey-title">How it works</h2><p class="intro">The Standard Solution journey — experience it first, then explore the commercial impact.</p>
+<div class="journey">
+<div class="journey-step"><span class="number">1</span><svg viewBox="0 0 36 36" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="m8 25 17-17 5 5-17 17-8 2 3-7Z"/><path d="m21 12 5 5"/></svg><strong>Submit your enquiry</strong></div>
+<span class="journey-arrow" aria-hidden="true">→</span>
+<div class="journey-step"><span class="number">2</span><svg viewBox="0 0 36 36" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="7" width="30" height="23" rx="3"/><path d="m4 10 14 11 14-11"/></svg><strong>Receive an automated acknowledgement</strong></div>
+<span class="journey-arrow" aria-hidden="true">→</span>
+<div class="journey-step"><span class="number">3</span><svg viewBox="0 0 36 36" aria-hidden="true" fill="currentColor"><rect x="5" y="22" width="6" height="11" rx="1"/><rect x="15" y="13" width="6" height="20" rx="1"/><rect x="25" y="4" width="6" height="29" rx="1"/></svg><strong>Access the Revenue at Risk Calculator through your email</strong></div>
+</div><span class="journey-label">The Standard Solution Journey</span></section><section class="standard-panel" id="standard-solution" aria-labelledby="standard-title"><div><h2 id="standard-title">The Standard Solution</h2><div class="mini-rule"></div><p>A managed lead-response operation that helps businesses acknowledge, route, log and follow up genuine enquiries quickly and consistently.</p></div>
+<ul class="standard-benefits"><li>Automated acknowledgement of valid enquiries</li><li>Rapid response while interest is high</li><li>Lead validation, routing, logging and follow-up</li><li>Managed monitoring and routine maintenance</li><li>Indicative Standard Solution pricing at £500/month</li><li>Bespoke solutions separately scoped and priced</li></ul></section><p class="timing-note">*Timing is measured from receipt of a valid enquiry by the automated intake route to dispatch of the response. Delivery to the recipient’s inbox may vary slightly due to email-provider processing.</p></main><footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a class="brand" href=""><img src="assets/logo-mark.svg" alt=""><span>Prospect Flows</span></a><span class="footer-tagline">Where ‘speed to lead’ matters.</span></div><div class="footer-links"><button type="button" class="privacy-settings" id="manage-analytics">Analytics preferences</button><a href="privacy-policy.html">Privacy Policy</a><a href="terms.html">Terms &amp; Conditions</a></div></div><p class="copyright">© 2026 Prospect Flows</p></footer><script>document.querySelector('.h-captcha').setAttribute('data-theme',window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');</script><script src="https://web3forms.com/client/script.js" async defer></script>
 <script>
 var form=document.getElementById('cta');
 var submitBtn=document.getElementById('submit-btn');
@@ -233,5 +86,23 @@ if(form){
 var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible')}})},{threshold:0.15});
 document.querySelectorAll('.fade').forEach(function(el){obs.observe(el)});
 </script>
-</body>
-</html>
+<div id="privacy-banner" class="privacy-banner" role="region" aria-label="Analytics preferences"><p>We use optional analytics to understand website usage. Your choice does not affect the demonstration or calculator. <a href="/privacy-policy.html">Privacy information</a>.</p><div class="actions"><button class="reject" type="button" id="reject-analytics">Reject analytics</button><button class="allow" type="button" id="allow-analytics">Allow analytics</button></div></div>
+<script>
+(function(){
+  var key='pf-analytics-preference',banner=document.getElementById('privacy-banner');
+  function loadAnalytics(){
+    if(window.pfAnalyticsLoaded)return;
+    window.pfAnalyticsLoaded=true;
+    window.dataLayer=window.dataLayer||[];
+    window.gtag=function(){dataLayer.push(arguments)};
+    gtag('js',new Date());gtag('config','G-K7BTXNPB6P');
+    var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-K7BTXNPB6P';document.head.appendChild(s);
+  }
+  function read(){try{return localStorage.getItem(key)}catch(e){return null}}
+  function save(value){try{localStorage.setItem(key,value)}catch(e){}window.location.reload()}
+  document.getElementById('manage-analytics').addEventListener('click',function(){banner.classList.add('visible')});document.getElementById('allow-analytics').addEventListener('click',function(){save('allow')});
+  document.getElementById('reject-analytics').addEventListener('click',function(){save('reject')});
+  var choice=read();if(choice==='allow')loadAnalytics();else if(choice!=='reject')banner.classList.add('visible');
+})();
+</script>
+</body></html>

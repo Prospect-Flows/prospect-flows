@@ -21,6 +21,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 .hero-rule{width:115px;height:3px;background:var(--accent-2);margin:16px auto 20px;border-radius:3px}
 .hero h1{font-family:'Syne',Arial,sans-serif;font-weight:600;font-size:clamp(2.4rem,4.2vw,3.7rem);line-height:1.13;letter-spacing:-.035em;margin:0 0 12px}
 .hero-lede{font-size:clamp(1rem,1.4vw,1.12rem);max-width:850px;margin:0 auto 26px;color:var(--muted);line-height:1.54}
+.hero-performance{font-size:clamp(.88rem,1.2vw,.99rem);font-weight:600;color:var(--accent);margin:0 auto 10px;line-height:1.4}
 .feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin:36px 0 30px;text-align:left}
 .feature-card{display:flex;flex-direction:column;gap:12px;padding:18px 20px;background:linear-gradient(135deg,var(--panel),var(--bg-2));border:1px solid var(--border);border-radius:14px;min-height:130px;box-shadow:var(--shadow)}
 .feature-card svg{width:35px;height:35px;color:var(--accent)}.feature-card strong{font-size:clamp(.95rem,1.3vw,1.1rem);line-height:1.25}

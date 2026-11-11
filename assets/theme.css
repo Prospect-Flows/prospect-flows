@@ -1,3 +1,4 @@
+/* Deployment: homepage journey reorder and verified 33-second timing, 11 November 2026. */
 /* Prospect Flows shared design system — consistent between all four pages. */
 :root{color-scheme:dark;--bg:#06111b;--bg-2:#071724;--panel:#0b2031;--panel-2:#102a42;--panel-highlight:#153953;--border:#35526b;--border-soft:rgba(143,201,255,.26);--ink:#f5f9ff;--muted:#c3d0df;--soft:#96b4d0;--accent:#47baff;--accent-2:#087cec;--link:#75d0ff;--nav:rgba(5,18,29,.92);--shadow:0 18px 46px rgba(0,0,0,.22);--input:#203348;--focus:#9ce5ff}
 @media(prefers-color-scheme:light){:root{color-scheme:light;--bg:#f7fbff;--bg-2:#eef7ff;--panel:#ffffff;--panel-2:#eaf4ff;--panel-highlight:#dbefff;--border:#c4d8eb;--border-soft:rgba(0,109,223,.27);--ink:#091c38;--muted:#263e58;--soft:#37536f;--accent:#075cda;--accent-2:#167fe9;--link:#004ba7;--nav:rgba(247,251,255,.94);--shadow:0 16px 36px rgba(35,86,140,.12);--input:#ffffff;--focus:#0b72ed}}
